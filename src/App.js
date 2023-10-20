@@ -47,3 +47,40 @@ Esto evita el doble renderizado y proporciona una experiencia más fluida.
 }
 
 export default App;
+
+
+/**
+ ****** Usando varios endpoints y reutilizando fetchData ******
+ * 
+ * 
+ * 
+ * import fetchData from "./components/fetchData";
+import { Suspense } from "react";
+
+const apiData1 = fetchData("https://api.example.com/endpoint1");
+const apiData2 = fetchData("https://api.example.com/endpoint2");
+
+function App() {
+  const data1 = apiData1.read();
+  const data2 = apiData2.read();
+
+  return (
+    <div className="App">
+      <h1>Fetch like a pro</h1>
+      <Suspense fallback={<div>Loading...</div>}>
+        <ul>
+          {data1?.map((item) => (
+            <li key={item.id}>{item.name}</li>
+          )}
+        </ul>
+        <ul>
+          {data2?.map((item) => (
+            <li key={item.id}>{item.name}</li>
+          )}
+        </ul>
+      </Suspense>
+    </div>
+  );
+}
+
+ */
